@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard SIAPDES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-yellow-400 p-4 hidden md:block">
+      <!-- Profil User -->
+      <div class="bg-blue-800 text-white rounded-lg p-4 mb-4">
+        <img src="assets/User-60.png" alt="Foto Profil Mina Myoui" class="rounded-full mx-auto" />
+        <p class="font-bold mt-2 text-center">Rizky Mauludin Caesar</p>
+        <p class="text-sm text-center">Admin</p>
+      </div>
+
+       <!-- Navigasi -->
+       <nav class="space-y-2 text-blue-800 font-medium">
+        <a href="#" class="block px-2 py-1 bg-blue-100 text-blue-800 rounded">📊 Dashboard</a>
+        <a href="#" class="block px-2 py-1">🔍 Pencarian & Filter Arsip</a>
+        <a href="#" class="block px-2 py-1">📥 Arsip Surat Masuk</a>
+        <a href="#" class="block px-2 py-1">📤 Arsip Surat Keluar</a>
+        <a href="#" class="block px-2 py-1">📑 Laporan Arsip</a>
+        <a href="#" class="block px-2 py-1">📨 Disposisi & Tindak Lanjut</a>
+        <a href="#" class="block px-2 py-1">👤 Manajemen Pegawai</a>
+        <a href="#" class="block px-2 py-1">⚙ Pengaturan Akun</a>
+        <a href="#" class="block px-2 py-1">🚪 Keluar</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 bg-white">
+    <!-- Header -->
+    <div class="flex justify-end items-center mb-6 bg-blue-300 p-4 rounded shadow">
+    <img src="assets/Logo.png" alt="Logo SIAPDES" class="w-70" />
+  </div>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+    .back-button::before {
+      content: "← ";
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card p {
+      margin: 8px 0;
+    }
+    canvas {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="dashboard.html" onclick="history.back(); return false;" class="back-button">Kembali</a>
+
+    <div class="stats">
+      <div class="card">
+        <p>Total Arsip</p>
+        <h2>1.250</h2>
+      </div>
+      <div class="card">
+        <p>Arsip Aktif</p>
+        <h2>830</h2>
+      </div>
+      <div class="card">
+        <p>Arsip Inaktif</p>
+        <h2>350</h2>
+      </div>
+      <div class="card">
+        <p>Arsip Musnah</p>
+        <h2>70</h2>
+      </div>
+    </div>
+
+    <h2>Jumlah Arsip per Bulan</h2>
+    <canvas id="arsipChart" width="800" height="400"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('arsipChart').getContext('2d');
+    const arsipChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+        datasets: [{
+          label: 'Jumlah Arsip',
+          data: [20, 30, 45, 65, 80, 85, 65, 50, 40, 40, 35, 40],
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 2,
+          tension: 0.3,
+          fill: true,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

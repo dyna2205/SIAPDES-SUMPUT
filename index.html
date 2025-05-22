@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIAPDES - Sistem Arsip Desa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+    button, a {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+    button:hover, a:hover {
+      transform: scale(1.05);
+    }
+    button:active, a:active {
+      transform: scale(0.95);
+      transition: transform 0.1s ease;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .feature-icon {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .feature-icon:hover {
+      animation: bounce 0.6s;
+      transform-origin: center bottom;
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    .btn-masuk {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(37, 99, 235, 0.7);
+      backdrop-filter: blur(6px);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.5), 0 4px 6px -2px rgba(37, 99, 235, 0.3);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      z-index: 10;
+      text-decoration: none;
+      user-select: none;
+    }
+    .btn-masuk:hover {
+      background-color: rgba(29, 78, 216, 0.8);
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    .btn-masuk:active {
+      transform: translate(-50%, -50%) scale(0.95);
+      transition-duration: 0.1s;
+    }
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-height: 450px;
+      overflow: hidden;
+    }
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .wave-bg {
+      position: relative;
+      overflow: hidden;
+      background: #f0f9ff;
+    }
+    .wave-bg::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100px;
+      background: radial-gradient(circle at 50% 100%, #dbeafe 50%, transparent 70%);
+      animation: wave 6s linear infinite;
+      opacity: 0.4;
+      transform-origin: center bottom;
+      z-index: 0;
+    }
+    .wave-bg::after {
+      content: "";
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 200%;
+      height: 120px;
+      background: radial-gradient(circle at 50% 100%, #bfdbfe 50%, transparent 70%);
+      animation: wave 8s linear infinite reverse;
+      opacity: 0.3;
+      transform-origin: center bottom;
+      z-index: 0;
+    }
+    @keyframes wave {
+      0% { transform: translateX(0) translateY(0); }
+      50% { transform: translateX(-25%) translateY(-10px); }
+      100% { transform: translateX(0) translateY(0); }
+    }
+    .wave-bg > * {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body class="font-sans bg-white text-gray-800">
+
+  <!-- Navigasi Atas -->
+  <div class="w-full flex justify-between items-center px-8 py-4 shadow-md bg-white sticky top-0 z-50 reveal">
+    <div class="flex items-center space-x-3">
+      <img src="assets/lgo_bry-removebg-preview[1].png" alt="Logo" class="w-12 h-12" />
+      <h1 class="text-2xl font-bold text-blue-900">SIAPDES</h1>
+    </div>
+    <div class="space-x-3">
+      <button class="bg-yellow-300 text-gray-800 font-semibold px-5 py-2 rounded shadow"><a href="bantuan.html">BANTUAN</a></button>
+      <button class="bg-blue-600 text-white font-semibold px-5 py-2 rounded shadow"><a href="daftar.html">DAFTAR</a></button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-yellow-400 text-white text-center py-16 px-8 mt-3 reveal">
+    <h2 class="text-6xl font-bold mb-8">Selamat Datang<br>di SIAPDES</h2>
+    <p class="text-lg max-w-4xl mx-auto text-blue-900 font-medium leading-relaxed">
+      Platform Arsip Digital Yang di Buat Untuk Menangani<br>Pengelolaan Arsip Kantor Desa Sumput.
+    </p>
+  </header>
+
+  <!-- Gambar dan Tombol Masuk -->
+  <div class="image-container reveal">
+    <img src="assets/sumput.jpg" alt="Kantor Desa Sumput" />
+    <a href="login.html" class="btn-masuk">MASUK</a>
+  </div>
+
+  <!-- Apa itu SIAPDES -->
+  <section class="bg-gray-100 py-12 px-8 reveal wave-bg">
+    <div class="max-w-screen-xl mx-auto bg-blue-50 rounded-lg shadow-md p-8 flex flex-col md:flex-row items-start md:space-x-8 space-y-6 md:space-y-0">
+      <div class="font-semibold text-gray-700 md:w-1/3 text-lg">Apa itu <span class="text-black">SIAPDES?</span></div>
+      <div class="text-gray-600 text-base md:w-2/3 leading-relaxed">
+        SIAPDES (Sistem Arsip Desa) Merupakan aplikasi digital yang digunakan untuk mengelola arsip surat masuk, surat keluar, dan disposisi secara cepat, di lingkungan pemerintahan desa.
+      </div>
+    </div>
+  </section>
+
+  <!-- Fitur Utama -->
+  <section class="py-14 px-8 reveal wave-bg">
+    <h3 class="text-3xl font-bold text-center mb-12">Fitur Utama</h3>
+    <div class="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center px-4">
+      <div class="border border-gray-300 rounded-lg p-8 shadow hover:shadow-lg bg-white">
+        <img src="https://img.icons8.com/ios-filled/50/000000/monitor.png" class="feature-icon mx-auto mb-5" />
+        <p class="font-semibold text-gray-700 text-lg">Dashboard</p>
+      </div>
+      <div class="border border-gray-300 rounded-lg p-8 shadow hover:shadow-lg bg-white">
+        <img src="https://img.icons8.com/ios-filled/50/000000/document.png" class="feature-icon mx-auto mb-5" />
+        <p class="font-semibold text-gray-700 text-lg">Manajemen Arsip Surat</p>
+      </div>
+      <div class="border border-gray-300 rounded-lg p-8 shadow hover:shadow-lg bg-white">
+        <img src="https://img.icons8.com/ios-filled/50/000000/speech-bubble.png" class="feature-icon mx-auto mb-5" />
+        <p class="font-semibold text-gray-700 text-lg">Disposisi dan<br/>Tindak Lanjut</p>
+      </div>
+      <div class="border border-gray-300 rounded-lg p-8 shadow hover:shadow-lg bg-white">
+        <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" class="feature-icon mx-auto mb-5" />
+        <p class="font-semibold text-gray-700 text-lg">Pencarian Arsip</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-200 text-center py-6 text-sm text-gray-600 reveal">
+    © 2025 <strong>SIAPDES</strong> - Semua Hak Dilindungi
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      const windowHeight = window.innerHeight;
+      const revealPoint = 150;
+
+      reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - revealPoint) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arsip Masuk SIAPDES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .form-container {
+      background: #d9d9d9;
+      padding: 30px;
+      width: 400px;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .required::after {
+      content: " *";
+      color: red;
+    }
+    .buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn-save {
+      background: #ffc107;
+      border: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .btn-cancel {
+      background: red;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .header {
+      background-color: #005baa;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="flex min-h-screen">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-yellow-400 p-4 hidden md:block">
+    <!-- Profil User -->
+    <div class="bg-blue-800 text-white rounded-lg p-4 mb-4">
+      <img src="assets/User-60.png" alt="Foto Profil Mina Myoui" class="rounded-full mx-auto" />
+      <p class="font-bold mt-2 text-center">Rizky Mauludin Caesar</p>
+      <p class="text-sm text-center">Admin</p>
+    </div>
+
+    <!-- Navigasi -->
+    <nav class="space-y-2 text-blue-800 font-medium">
+      <a href="dashboard.html" class="block px-2 py-1">📊 Dashboard</a>
+      <a href="pencarian.html" class="block px-2 py-1">🔍 Pencarian & Filter Arsip</a>
+      <a href="arsipmasuk.html" class="block px-2 py-1 bg-blue-100 text-blue-800 rounded">📥 Arsip Surat Masuk</a>
+      <a href="#" class="block px-2 py-1">📤 Arsip Surat Keluar</a>
+      <a href="#" class="block px-2 py-1">📑 Laporan Arsip</a>
+      <a href="#" class="block px-2 py-1">📨 Disposisi & Tindak Lanjut</a>
+      <a href="#" class="block px-2 py-1">👤 Manajemen Pegawai</a>
+      <a href="#" class="block px-2 py-1">⚙ Pengaturan Akun</a>
+      <a href="#" class="block px-2 py-1">🚪 Keluar</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6 bg-white">
+    <!-- Header -->
+    <div class="flex justify-end items-center mb-6 bg-blue-300 p-4 rounded shadow">
+      <img src="assets/Logo.png" alt="Logo SIAPDES" class="w-70" />
+    </div>
+
+    <!-- Judul Halaman -->
+    <div class="header">Tambah Arsip Masuk</div>
+
+    <!-- Tombol Kembali -->
+    <div class="container my-4">
+      <button onclick="history.back();" class="back-button"> <a href="arsipmasuk.html">← Kembali</a></button>
+    </div>
+
+    <!-- Form Arsip -->
+    <div class="form-container">
+      <form action="#" method="post" enctype="multipart/form-data">
+        <label for="no_surat" class="required">No. Surat</label>
+        <input type="text" id="no_surat" name="no_surat" required>
+
+        <label for="tanggal_surat" class="required">Tanggal Surat</label>
+        <input type="date" id="tanggal_surat" name="tanggal_surat" required>
+
+        <label for="pengirim" class="required">Pengirim</label>
+        <input type="text" id="pengirim" name="pengirim" required>
+
+        <label for="perihal" class="required">Perihal</label>
+        <input type="text" id="perihal" name="perihal" required>
+
+        <label for="ringkasan" class="required">Isi Ringkasan Surat</label>
+        <input type="text" id="ringkasan" name="ringkasan" required>
+
+        <label for="dokumen" class="required">Unggah Dokumen</label>
+        <input type="file" id="dokumen" name="dokumen" required>
+
+        <div class="buttons">
+          <button type="submit" class="btn-save">📁 SIMPAN ARSIP MASUK</button>
+          <button type="reset" class="btn-cancel">❌ BATAL</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

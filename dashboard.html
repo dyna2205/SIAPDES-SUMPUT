@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard SIAPDES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-yellow-400 p-4 hidden md:block">
+      <!-- Profil User -->
+      <div class="bg-blue-800 text-white rounded-lg p-4 mb-4">
+        <img src="assets/User-60.png" alt="Foto Profil Mina Myoui" class="rounded-full mx-auto" />
+        <p class="font-bold mt-2 text-center">Rizky Mauludin Caesar</p>
+        <p class="text-sm text-center">Admin</p>
+      </div>
+
+      <!-- Navigasi -->
+      <nav class="space-y-2 text-blue-800 font-medium">
+        <a href="dashboard.html" class="block px-2 py-1 bg-blue-100 text-blue-800 rounded">📊 Dashboard</a>
+        <a href="pencarian.html" class="block px-2 py-1">🔍 Pencarian & Filter Arsip</a>
+        <a href="arsipmasuk.html" class="block px-2 py-1">📥 Arsip Surat Masuk</a>
+        <a href="#" class="block px-2 py-1">📤 Arsip Surat Keluar</a>
+        <a href="#" class="block px-2 py-1">📑 Laporan Arsip</a>
+        <a href="#" class="block px-2 py-1">📨 Disposisi & Tindak Lanjut</a>
+        <a href="#" class="block px-2 py-1">👤 Manajemen Pegawai</a>
+        <a href="#" class="block px-2 py-1">⚙ Pengaturan Akun</a>
+        <a href="#" class="block px-2 py-1">🚪 Keluar</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 bg-white">
+    <!-- Header -->
+    <div class="flex justify-end items-center mb-6 bg-blue-300 p-4 rounded shadow">
+    <img src="assets/Logo.png" alt="Logo SIAPDES" class="w-70" />
+  </div>
+  
+      <section aria-labelledby="statistik-arsip">
+        <!-- Notifikasi & Statistik -->
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <!-- Notifikasi -->
+          <div class="col-span-1">
+            <div class="bg-gray-100 p-3 pt-6 rounded shadow h-[90px] flex flex-col justify-start">
+                <a href="notifikasi.html" class="font-bold text-red-600 text-sm hover:underline">
+                  🔔 Notifikasi Terbaru
+                </a>
+                <p class="mt-1 text-sm">Disposisi untuk surat 012/ABC</p>
+              </div>
+            </div>
+
+          <!-- Grafik Statistik -->
+          <div class="col-span-2 bg-white p-4 rounded shadow">
+            <div class="flex justify-between items-center mb-2">
+              <h2 id="statistik-arsip" class="font-bold">Statistik Arsip</h2>
+              <a href="statistik.html" class="bg-blue-600 text-white text-sm px-3 py-1 rounded inline-block">Selengkapnya</a>
+            </div>
+            <canvas id="arsipChart" height="80"></canvas>
+          </div>
+        </div>
+
+      <!-- Surat Masuk & Keluar -->
+      <div class="flex space-x-4 mb-6">
+        <div class="flex-1 bg-white rounded p-4 shadow text-center">
+          <p class="text-blue-800 font-bold text-lg">📥 Surat Masuk</p>
+          <p class="text-2xl font-bold">5</p>
+        </div>
+        <div class="flex-1 bg-white rounded p-4 shadow text-center">
+          <p class="text-blue-800 font-bold text-lg">📤 Surat Keluar</p>
+          <p class="text-2xl font-bold">3</p>
+        </div>
+      </div>
+
+      <!-- Aktivitas & Disposisi -->
+      <div class="grid grid-cols-2 gap-6">
+        <!-- Aktivitas Arsip -->
+        <section class="bg-yellow-100 p-4 rounded shadow" aria-labelledby="aktivitas-terbaru">
+          <h3 id="aktivitas-terbaru" class="font-bold text-lg mb-2">📁 Aktivitas Arsip Terbaru</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left border border-gray-300 bg-white">
+              <thead class="bg-gray-200 text-gray-700">
+                <tr>
+                  <th class="px-4 py-2 border border-gray-300">No.</th>
+                  <th class="px-4 py-2 border border-gray-300">Tanggal</th>
+                  <th class="px-4 py-2 border border-gray-300">Nomor Surat</th>
+                  <th class="px-4 py-2 border border-gray-300">Kategori</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-4 py-2 border border-gray-300">1</td>
+                  <td class="px-4 py-2 border border-gray-300">2025-05-05</td>
+                  <td class="px-4 py-2 border border-gray-300">440/111/2025</td>
+                  <td class="px-4 py-2 border border-gray-300">Instruksi</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2 border border-gray-300">2</td>
+                  <td class="px-4 py-2 border border-gray-300">2025-05-05</td>
+                  <td class="px-4 py-2 border border-gray-300">440/112/2025</td>
+                  <td class="px-4 py-2 border border-gray-300">Undangan</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-2 border border-gray-300">3</td>
+                  <td class="px-4 py-2 border border-gray-300">2025-05-05</td>
+                  <td class="px-4 py-2 border border-gray-300">440/113/2025</td>
+                  <td class="px-4 py-2 border border-gray-300">Laporan</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Disposisi -->
+        <section class="bg-gray-100 p-4 rounded shadow" aria-labelledby="disposisi-terakhir">
+          <div class="flex justify-between items-center mb-2">
+            <h3 id="disposisi-terakhir" class="font-bold text-lg">📬 Disposisi Terakhir</h3>
+            <button class="text-sm text-blue-600">Lihat</button>
+          </div>
+          <ul class="space-y-2">
+            <li class="bg-white p-2 rounded shadow">
+              <p class="font-semibold">Undangan Musyawarat</p>
+              <p class="text-sm text-gray-600">1 April 2025 - Segera tindak lanjuti</p>
+            </li>
+            <li class="bg-white p-2 rounded shadow">
+              <p class="font-semibold">Laporan</p>
+              <p class="text-sm text-gray-600">4 April 2025 - Minta laporan kegiatan</p>
+            </li>
+            <li class="bg-white p-2 rounded shadow">
+              <p class="font-semibold">Undangan Musyawarat</p>
+              <p class="text-sm text-gray-600">9 April 2025 - Segera tindak lanjuti</p>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Grafik Statistik Arsip -->
+  <script>
+    const ctx = document.getElementById('arsipChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei'],
+        datasets: [{
+          label: 'Jumlah Arsip',
+          data: [3, 5, 4, 6, 7],
+          borderColor: '#3b82f6',
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
+          fill: true,
+          tension: 0.3,
+          pointBackgroundColor: '#3b82f6',
+          pointRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

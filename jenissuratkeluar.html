@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pencarian SIAPDES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-yellow-400 p-4 hidden md:block">
+          <!-- Profil User -->
+          <div class="bg-blue-800 text-white rounded-lg p-4 mb-4">
+            <img src="assets/User-60.png" alt="Foto Profil Mina Myoui" class="rounded-full mx-auto" />
+            <p class="font-bold mt-2 text-center">Rizky Mauludin Caesar</p>
+            <p class="text-sm text-center">Admin</p>
+          </div>
+
+       <!-- Navigasi -->
+       <nav class="space-y-2 text-blue-800 font-medium">
+        <a href="#" class="block px-2 py-1">📊 Dashboard</a>
+        <a href="#" class="block px-2 py-1 bg-blue-100 text-blue-800 rounded">🔍 Pencarian & Filter Arsip</a>
+        <a href="#" class="block px-2 py-1">📥 Arsip Surat Masuk</a>
+        <a href="#" class="block px-2 py-1">📤 Arsip Surat Keluar</a>
+        <a href="#" class="block px-2 py-1">📑 Laporan Arsip</a>
+        <a href="#" class="block px-2 py-1">📨 Disposisi & Tindak Lanjut</a>
+        <a href="#" class="block px-2 py-1">👤 Manajemen Pegawai</a>
+        <a href="#" class="block px-2 py-1">⚙ Pengaturan Akun</a>
+        <a href="#" class="block px-2 py-1">🚪 Keluar</a>
+      </nav>
+    </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6 bg-white">
+        <!-- Header -->
+        <div class="flex justify-end items-center mb-6 bg-blue-300 p-4 rounded shadow">
+        <img src="assets/Logo.png" alt="Logo SIAPDES" class="w-70" />
+      </div>
+
+  <style>
+    /* Main content */
+    .main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: #005baa;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .container {
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      text-align: center;
+      padding: 10px;
+    }
+
+    th {
+      background-color: #f7b500;
+      color: white;
+    }
+
+    .action-buttons i {
+      margin: 0 5px;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-view {
+      background-color: green;
+      color: white;
+    }
+
+    .btn-edit {
+      background-color: yellow;
+      color: black;
+    }
+
+    .btn-delete {
+      background-color: red;
+      color: white;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .pagination button {
+      padding: 5px 10px;
+      margin: 2px;
+      cursor: pointer;
+    }
+
+    select {
+      padding: 5px;
+      margin-left: 10px;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+    .back-button::before {
+      content: "← ";
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="header">Jenis Surat Arsip</div>
+
+    <div class="container">
+        <a href="pencarian.html" onclick="history.back(); return false;" class="back-button">Kembali</a>    
+
+    <div class="container">
+      <h2>Arsip Keluar</h2>
+
+      <label for="entries">Show</label>
+      <select id="entries" onchange="updateTable()">
+        <option value="2" selected>2</option>
+        <option value="5">5</option>
+      </select> entries
+
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Perihal Surat</th>
+            <th>Nomor Surat</th>
+            <th>Tanggal Surat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Baris data akan dimasukkan dengan JavaScript -->
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <button disabled>Previous</button>
+        <button style="background-color: green; color: white;">1</button>
+        <button>Next</button>
+      </div>
+
+      <p>Showing 1 of 2 entries</p>
+    </div>
+  </div>
+
+  <script>
+    const data = [
+      {
+        no: 1,
+        perihal: "Perencanaan Pembuatan Website",
+        nomor: "02/03/0001/SRTKLR/001",
+        tanggal: "15-05-2025"
+      },
+      {
+        no: 2,
+        perihal: "Perencanaan Pembuatan Website",
+        nomor: "02/03/0001/SRTKLR/002",
+        tanggal: "15-05-2025"
+      }
+    ];
+
+    function updateTable() {
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = '';
+      data.forEach(row => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${row.no}</td>
+            <td>${row.perihal}</td>
+            <td>${row.nomor}</td>
+            <td><strong>${row.tanggal}</strong></td>
+            <td class="action-buttons">
+              <i class="btn-view">👁️</i>
+              <i class="btn-edit">✏️</i>
+              <i class="btn-delete">🗑️</i>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    updateTable();
+  </script>
+
+</body>
+</html>

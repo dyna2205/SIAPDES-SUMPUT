@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pencarian SIAPDES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-yellow-400 p-4 hidden md:block">
+          <!-- Profil User -->
+          <div class="bg-blue-800 text-white rounded-lg p-4 mb-4">
+            <img src="assets/User-60.png" alt="Foto Profil Mina Myoui" class="rounded-full mx-auto" />
+            <p class="font-bold mt-2 text-center">Rizky Mauludin Caesar</p>
+            <p class="text-sm text-center">Admin</p>
+          </div>
+
+          <!-- Navigasi -->
+      <nav class="space-y-2 text-blue-800 font-medium">
+        <a href="dashboard.html" class="block px-2 py-1">📊 Dashboard</a>
+        <a href="pencarian.html" class="block px-2 py-1 bg-blue-100 text-blue-800 rounded">🔍 Pencarian & Filter Arsip</a>
+        <a href="arsipmasuk.html" class="block px-2 py-1">📥 Arsip Surat Masuk</a>
+        <a href="#" class="block px-2 py-1">📤 Arsip Surat Keluar</a>
+        <a href="#" class="block px-2 py-1">📑 Laporan Arsip</a>
+        <a href="#" class="block px-2 py-1">📨 Disposisi & Tindak Lanjut</a>
+        <a href="#" class="block px-2 py-1">👤 Manajemen Pegawai</a>
+        <a href="#" class="block px-2 py-1">⚙ Pengaturan Akun</a>
+        <a href="#" class="block px-2 py-1">🚪 Keluar</a>
+      </nav>
+    </aside>
+
+     <!-- Main Content -->
+     <main class="flex-1 p-6 bg-white">
+        <!-- Header -->
+        <div class="flex justify-end items-center mb-6 bg-blue-300 p-4 rounded shadow">
+        <img src="assets/Logo.png" alt="Logo SIAPDES" class="w-70" />
+      </div>
+
+       <!-- Tombol Kembali -->
+    <div class="container my-4">
+      <button onclick="history.back();" class="back-button"> <a href="pencarian.html">← Kembali</a></button>
+    </div>
+
+
+  <style>
+    
+    /* Main content */
+    .main {
+      flex: 1;
+      padding: 30px;
+      background-color: #fff;
+    }
+
+    .main h2 {
+      margin-top: 0;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background-color: #ffcc00;
+    }
+
+    td {
+      background-color: #e0e0e0;
+    }
+
+    .aksi-btn {
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      margin-right: 4px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .view-btn {
+      background-color: green;
+    }
+
+    .disposisi-btn {
+      background-color: yellow;
+      color: black;
+    }
+
+    .delete-btn {
+      background-color: red;
+    }
+
+    .entries-control,
+    .pagination {
+      margin: 15px 0;
+    }
+
+    .pagination button {
+      margin-right: 5px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      background-color: #f4f4f4;
+      cursor: pointer;
+    }
+
+    .pagination .active {
+      background-color: green;
+      color: white;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+      <div class="entries-control">
+        Show 
+        <select>
+          <option>2</option>
+          <option>4</option>
+          <option>8</option>
+        </select> 
+        entries
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Perihal Surat</th>
+            <th>Nomor Surat</th>
+            <th>Tanggal Surat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Undangan Rapat Kecamatan</td>
+            <td>4222.11/222222</td>
+            <td>10-05-2025</td>
+            <td>
+              <button class="aksi-btn view-btn">👁️</button>
+              <button class="aksi-btn disposisi-btn">📤</button>
+              <button class="aksi-btn delete-btn">🗑️</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Laporan Pengaduan Masyarakat</td>
+            <td>4222.10/222222</td>
+            <td>07-05-2025</td>
+            <td>
+              <button class="aksi-btn view-btn">👁️</button>
+              <button class="aksi-btn disposisi-btn">📤</button>
+              <button class="aksi-btn delete-btn">🗑️</button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Surat Izin Usaha</td>
+            <td>4222.09/222222</td>
+            <td>07-05-2025</td>
+            <td>
+              <button class="aksi-btn view-btn">👁️</button>
+              <button class="aksi-btn disposisi-btn">📤</button>
+              <button class="aksi-btn delete-btn">🗑️</button>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Undangan Kegiatan Karang Taruna</td>
+            <td>4222.09/222222</td>
+            <td>05-05-2025</td>
+            <td>
+              <button class="aksi-btn view-btn">👁️</button>
+              <button class="aksi-btn disposisi-btn">📤</button>
+              <button class="aksi-btn delete-btn">🗑️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Showing 1 of 2 entries</p>
+
+      <div class="pagination">
+        <button>Previous</button>
+        <button class="active">1</button>
+        <button>Next</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
